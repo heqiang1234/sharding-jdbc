@@ -1,54 +1,55 @@
 server:
-  port: 8085
-
+  port: 8999
 
 spring:
   main:
     allow-bean-definition-overriding: true
   shardingsphere:
-    # ²ÎÊıÅäÖÃ£¬ÏÔÊ¾SQL
+    # å‚æ•°é…ç½®ï¼Œæ˜¾ç¤ºSQL
     props:
       sql:
         show: true
-    # ÅäÖÃÊı¾İÔ´
+    # é…ç½®æ•°æ®æº
     datasource:
-      # ¸øÃ¿¸öÊı¾İÔ´È¡±ğÃû£¬ÏÂÃæµÄds1,ds2ÈÎÒâÈ¡Ãû×Ö
+      # ç»™æ¯ä¸ªæ•°æ®æºå–åˆ«åï¼Œä¸‹é¢çš„ds1,ds2ä»»æ„å–åå­—
       names: ds1,ds2
-      # ¸ømaster-ds1Ã¿¸öÊı¾İÔ´ÅäÖÃÊı¾İ¿âÁ¬½ÓĞÅÏ¢
+      # ç»™master-ds1æ¯ä¸ªæ•°æ®æºé…ç½®æ•°æ®åº“è¿æ¥ä¿¡æ¯
       ds1:
-        # ÅäÖÃdruidÊı¾İÔ´
+        # é…ç½®druidæ•°æ®æº
         type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-driver: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://121.40.43.57:3306/shardingjdbc_db?useUnicode=true&charaterEncoding=utf8&tinyInt1isBit=false&serverTimezone=UTC
+        driver-class-driver: com.mysql.jdbc.Driver
+        #jdbc:mysql://47.107.105.158:3306/test?characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://121.40.43.57:3306/shardingjdbc_db?useUnicode=true&characterEncoding=utf8&tinyIntlisBit=false&useSSL=false&serverTimezone=UTC
+        # jdbc:mysql://121.40.43.57:3306/shardingjdbc_db?characterEncoding=utf-8&useSSL=false
         username: root
         password: 123456
         maxPoolSize: 100
         minPoolSize: 5
-      #ÅäÖÃds2-slave
+      #é…ç½®ds2-slave
       ds2:
-        # ÅäÖÃdruidÊı¾İÔ´
+        # é…ç½®druidæ•°æ®æº
         type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-driver: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://121.40.43.57:3308/shardingjdbc_db?useUnicode=true&charaterEncoding=utf8&tinyInt1isBit=false&serverTimezone=UTC
+        driver-class-driver: com.mysql.jdbc.Driver
+        url: jdbc:mysql://121.40.43.57:3308/shardingjdbc_db?useUnicode=true&characterEncoding=utf8&tinyIntlisBit=false&useSSL=false&serverTimezone=UTC
         username: root
         password: 123456
         maxPoolSize: 100
         minPoolSize: 5
-    # ÅäÖÃÄ¬ÈÏÊı¾İÔ´ds1
+    # é…ç½®é»˜è®¤æ•°æ®æºds1
     sharding:
-      # Ä¬ÈÏÊı¾İÔ´£¬Ö÷ÒªÓÃÓÚĞ´£¬×¢ÒâÒ»¶¨ÒªÅäÖÃ¶ÁĞ´·ÖÀë£¬×¢Òâ£¬Èç¹û²»ÅäÖÃ£¬ÄÇÃ´»á°ÑÈı¸ö½Úµã¶¼µ±×÷´Óslave½Úµã£¬ĞÂÔö£¬É¾³ıºÍĞŞ¸Ä¶¼»á³ö´í
+      # é»˜è®¤æ•°æ®æºï¼Œä¸»è¦ç”¨äºå†™ï¼Œæ³¨æ„ä¸€å®šè¦é…ç½®è¯»å†™åˆ†ç¦»ï¼Œæ³¨æ„ï¼Œå¦‚æœä¸é…ç½®ï¼Œé‚£ä¹ˆä¼šæŠŠä¸‰ä¸ªèŠ‚ç‚¹éƒ½å½“ä½œä»slaveèŠ‚ç‚¹ï¼Œæ–°å¢ï¼Œåˆ é™¤å’Œä¿®æ”¹éƒ½ä¼šå‡ºé”™
       default-data-source-name: ds1
-    # ÅäÖÃÊı¾İÔ´µÄ¶ÁĞ´·ÖÀë£¬µ«ÊÇÊı¾İ¿âÒ»¶¨Òª×öÖ÷´Ó¸´ÖÆ
+    # é…ç½®æ•°æ®æºçš„è¯»å†™åˆ†ç¦»ï¼Œä½†æ˜¯æ•°æ®åº“ä¸€å®šè¦åšä¸»ä»å¤åˆ¶
     masterslave:
-      #ÅäÖÃÖ÷´ÓÃû×Ö£¬¿ÉÒÔÈÎÒâÈ¡Ãû×Ö
+      #é…ç½®ä¸»ä»åå­—ï¼Œå¯ä»¥ä»»æ„å–åå­—
       name: ms
-      #ÅäÖÃÖ÷¿âmaster£¬¸ºÔğÊı¾İµÄĞ´Èë
+      #é…ç½®ä¸»åº“masterï¼Œè´Ÿè´£æ•°æ®çš„å†™å…¥
       master-data-source-name: ds1
-      # ÅäÖÃ´Ó¿âslave½Úµã
+      # é…ç½®ä»åº“slaveèŠ‚ç‚¹
       slave-data-source-names: ds2
-      # ÅäÖÃslave½ÚµãµÄ¸ºÔØ¾ùºâ¾ùºâ²ßÂÔ£¬²ÉÓÃÂÖÑ¯»úÖÆ
+      # é…ç½®slaveèŠ‚ç‚¹çš„è´Ÿè½½å‡è¡¡å‡è¡¡ç­–ç•¥ï¼Œé‡‡ç”¨è½®è¯¢æœºåˆ¶
       load-balance-algorithm-type: round_robin
-# ÕûºÏmybatisµÄÅäÖÃXXXXX
+# æ•´åˆmybatisçš„é…ç½®XXXXX
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.sharding.shardingjdbc.entity

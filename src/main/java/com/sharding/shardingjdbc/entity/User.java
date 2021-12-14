@@ -2,6 +2,8 @@ package com.sharding.shardingjdbc.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author HQ
  * @program: sharding-jdbc
@@ -9,7 +11,7 @@ import lombok.Data;
  * @date 2021-12-14 08:17:13
  */
 @Data
-public class User {
+public class User implements Serializable{
     // 主键
     private Integer id;
     // 姓名
@@ -17,7 +19,7 @@ public class User {
     // 密码
     private String password;
     // 性别
-    private Integer ses;
+    private Integer sex;
     // 生日
     private String birthday;
 }
