@@ -77,7 +77,7 @@
             <artifactId>jackson-module-parameter-names</artifactId>
         </dependency>
 
-        <!--依赖书库元durid -->
+        <!--依赖数据源durid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>

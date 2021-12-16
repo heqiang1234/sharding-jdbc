@@ -6,8 +6,8 @@
     </select>
 
     <insert id="saveUser" parameterType="com.sharding.shardingjdbc.entity.User">
-        insert into user(nickname,password,sex,birthday)
+        insert into user(nickname,password,sex,birthday,age)
         VALUES
-        (#{nickname},#{password},#{sex},#{birthday})
+        (#{nickname},#{password},#{sex},#{birthday},#{age})
     </insert>
 </mapper>

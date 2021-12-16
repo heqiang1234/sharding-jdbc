@@ -1,0 +1,62 @@
+spring:
+  shardingsphere:
+    # 参数配置，显示SQL
+    props:
+      sql:
+        show: true
+    # 配置数据源
+    datasource:
+      # 给每个数据源取别名，下面的ds0,ds1任意取名字
+      names: ds0,ds1
+      # 给master-ds0每个数据源配置数据库连接信息
+      ds0:
+        # 配置druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-driver: com.mysql.jdbc.Driver
+        #jdbc:mysql://47.107.105.158:3306/test?characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://121.40.43.57:3306/shardingjdbc_db?useUnicode=true&characterEncoding=utf8&tinyIntlisBit=false&useSSL=false&serverTimezone=UTC
+        # jdbc:mysql://121.40.43.57:3306/shardingjdbc_db?characterEncoding=utf-8&useSSL=false
+        username: root
+        password: 123456
+        maxPoolSize: 100
+        minPoolSize: 5
+      #配置ds1-slave
+      ds1:
+        # 配置druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-driver: com.mysql.jdbc.Driver
+        url: jdbc:mysql://121.40.43.57:3308/shardingjdbc_db?useUnicode=true&characterEncoding=utf8&tinyIntlisBit=false&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 123456
+        maxPoolSize: 100
+        minPoolSize: 5
+#    # 配置默认数据源ds0
+    sharding:
+      # 默认数据源，主要用于写，注意一定要配置读写分离，注意，如果不配置，那么会把三个节点都当作从slave节点，新增，删除和修改都会出错
+      default-data-source-name: ds0
+      # 配置分表规则
+      tables:
+        # user 逻辑表名
+        user:
+          #数据节点：多数据源$->{0...N}，逻辑表名$->{0...N}
+          actual-data-nodes: ds0.user$->{0..1}
+          # 拆分库策略，也就是什么样子的数据放入到哪个数据库中
+          table-strategy:
+            inline:
+              sharding-column: age #分片字段（分片键）
+              algorithm-expression: user$->{age % 2} #分片算法表达式
+
+#    # 配置数据源的读写分离，但是数据库一定要做主从复制
+#    masterslave:
+#      #配置主从名字，可以任意取名字
+#      name: ms
+#      #配置主库master，负责数据的写入
+#      master-data-source-name: ds0
+#      # 配置从库slave节点
+#      slave-data-source-names: ds1
+#      # 配置slave节点的负载均衡均衡策略，采用轮询机制
+#      load-balance-algorithm-type: round_robin
+## 整合mybatis的配置XXXXX
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: com.sharding.shardingjdbc.entity

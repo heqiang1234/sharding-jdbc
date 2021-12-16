@@ -20,6 +20,8 @@ public class User implements Serializable{
     private String password;
     // 性别
     private Integer sex;
+    // 年龄
+    private Integer age;
     // 生日
     private String birthday;
 }

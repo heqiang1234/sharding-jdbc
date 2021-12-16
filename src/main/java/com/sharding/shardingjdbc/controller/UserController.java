@@ -34,6 +34,7 @@ public class UserController {
         user.setNickname("何" + new Random().nextInt());
         user.setPassword("123");
         user.setSex(1);
+        user.setAge(new Random().nextInt(99));
         user.setBirthday("20211214");
         userService.saveUser(user);
         return "success";
