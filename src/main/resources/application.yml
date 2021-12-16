@@ -5,7 +5,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   profiles:
-    active: sub2
+    active: standard
 #  shardingsphere:
 #    # 参数配置，显示SQL
 #    props:

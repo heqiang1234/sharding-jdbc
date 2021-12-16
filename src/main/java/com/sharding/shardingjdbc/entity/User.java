@@ -3,6 +3,7 @@ package com.sharding.shardingjdbc.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author HQ
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @Data
 public class User implements Serializable{
     // 主键
-    private Integer id;
+    private Long id;
     // 姓名
     private String nickname;
     // 密码
@@ -23,5 +24,5 @@ public class User implements Serializable{
     // 年龄
     private Integer age;
     // 生日
-    private String birthday;
+    private Date birthday;
 }

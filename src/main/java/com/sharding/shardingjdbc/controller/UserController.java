@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -35,7 +36,7 @@ public class UserController {
         user.setPassword("123");
         user.setSex(1);
         user.setAge(new Random().nextInt(99));
-        user.setBirthday("20211214");
+        user.setBirthday(new Date());
         userService.saveUser(user);
         return "success";
     }

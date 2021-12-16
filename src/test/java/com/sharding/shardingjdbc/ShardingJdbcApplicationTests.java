@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.Random;
 
 @SpringBootTest
@@ -21,7 +22,7 @@ class ShardingJdbcApplicationTests {
         user.setPassword("123");
         user.setSex(1);
         user.setAge(2);
-        user.setBirthday("20211214");
+        user.setBirthday(new Date());
         userService.saveUser(user);
        //return "success";
     }
