@@ -6,8 +6,8 @@
 <!--    </select>-->
 
     <insert id="saveUserOrder" parameterType="com.sharding.shardingjdbc.entity.UserOrder">
-        insert into user_order(ordernumber,userid,create_time)
+        insert into user_order(ordernumber,yearmonth,userid)
         VALUES
-        (#{ordernumber},#{userid},#{createTime})
+        (#{ordernumber},#{yearmonth},#{userid})
     </insert>
 </mapper>

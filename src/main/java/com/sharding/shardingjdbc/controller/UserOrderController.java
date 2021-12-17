@@ -41,4 +41,25 @@ public class UserOrderController {
     public int GetCount(){
         return userOrderService.countOrder();
     }
+
+    @GetMapping("/testTran")
+    public void testTransction(){
+        User user = new User();
+        user.setNickname("zhangsan" + new Random().nextInt());
+        user.setPassword("12345");
+        user.setSex(1);
+        user.setAge(3);
+        user.setBirthday(new Date());
+
+        UserOrder userOrder = new UserOrder();
+        userOrder.setOrderid(10000L);
+        System.out.println(new Date());
+       // userOrder.setCreateTime(new Date());
+        userOrder.setOrdernumber("133455678");
+        userOrder.setYearmonth("202102");
+        userOrder.setUserid(1L);
+        userOrderService.saveUserOrderTran(user,userOrder);
+    }
+
+
 }

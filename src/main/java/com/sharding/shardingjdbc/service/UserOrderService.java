@@ -15,4 +15,6 @@ public interface UserOrderService {
     int countOrder();
 
     void addUserOrder(UserOrder userOrder);
+
+    int saveUserOrderTran(User user,UserOrder userOrder);
 }

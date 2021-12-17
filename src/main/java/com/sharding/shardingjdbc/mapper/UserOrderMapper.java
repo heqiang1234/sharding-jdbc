@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UserOrderMapper {
 
-    @Options(useGeneratedKeys = true, keyColumn = "orderid", keyProperty = "orderid")
+    //@Options(useGeneratedKeys = true, keyColumn = "orderid", keyProperty = "orderid")
     void saveUserOrder(UserOrder userOrder);
 
     @Select("select count(1) from user_order")
