@@ -31,6 +31,7 @@ public class UserController {
 
     @GetMapping("/save")
     public String SaveUser(){
+
         User user = new User();
         user.setNickname("何" + new Random().nextInt());
         user.setPassword("123");
